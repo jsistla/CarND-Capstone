@@ -72,6 +72,9 @@ class WaypointLoader(object):
         return waypoints
 
     def publish(self, waypoints):
+        # Decrease the rate of the waypoint_loader to ease performance issues
+        # https://carnd.slack.com/archives/C6NVDVAQ3/p1504061507000179
+        rate = rospy.Rate(1)
         lane = Lane()
         lane.header.frame_id = '/world'
         lane.header.stamp = rospy.Time(0)

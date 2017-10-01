@@ -61,7 +61,9 @@ class DBWNode(object):
         self.loop()
 
     def loop(self):
-        rate = rospy.Rate(50) # 50Hz
+        # Lower the rate to avoid performance issues
+        # https://carnd.slack.com/archives/C6NVDVAQ3/p1504061507000179
+        rate = rospy.Rate(10) # 50Hz
         while not rospy.is_shutdown():
             # TODO: Get predicted throttle, brake, and steering using `twist_controller`
             # You should only publish the control commands if dbw is enabled
